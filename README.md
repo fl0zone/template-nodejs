@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h2 align="center">Express Quickstart</h2>
+<h2 align="center">Node.js Quickstart</h2>
 <p align="center">Backend engineering, supercharged.</p>
 
 ## Overview
