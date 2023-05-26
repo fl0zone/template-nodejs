@@ -40,7 +40,7 @@ If you have any questions about FL0 or this template codebase please head on ove
 
 ## Issues
 
-Any issues or feature requests can be raised on the [Issues page](https://github.com/fl0zone/template-express/issues) of this repo.
+Any issues or feature requests can be raised on the [Issues page](https://github.com/fl0zone/template-nodejs/issues) of this repo.
 
 ## License
 
