@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 1111;
+const port = process.env.PORT ?? 80;
 
 app.use(express.static('public'))
 
-app.get('*, (req, res) => {
+app.get('*', (req, res) => {
     res.redirect('/');
 })
 
