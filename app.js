@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-if(typeof process.env.PORT === 'undefined') throw new Error();
-const port = process.env.PORT;
+if(typeof process.env.DATABASE_URL === 'undefined') throw new Error();
+const port = process.env.PORT ?? 3000;
 
 app.use(express.static('public'))
 
