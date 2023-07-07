@@ -4,6 +4,7 @@
   "description": "A simple Node.js Express app for getting started on FL0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
     "build": "babel src -d dist",
     "start": "node dist/app.js"
   },
@@ -16,6 +17,9 @@
     "@babel/cli": "^7.22.6",
     "@babel/core": "^7.22.8",
     "@babel/node": "^7.22.6",
-    "@babel/preset-env": "^7.22.7"
+    "@babel/preset-env": "^7.22.7",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
   }
 }
