@@ -1,45 +1,148 @@
 <!DOCTYPE html>
-
+<html lang="es">
 <head>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="icon" href="/favicon.png">
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumanima</title>
+    <meta name="description" content="Descripción de la página">
+    <meta name="keywords" content="Palabras clave">
+    <meta name="author" content="Kumanima">
+    <meta name="msapplication-TileImage" content="">
+    <link rel="icon" type="image/png" href="./assets/images/logo_cabeza.svg">
+    <link rel="preconnect" href="https://dominio.com">
+    <meta name="robots" content="index, follow">
+    <meta name="msapplication-TileColor" content="rgb(237, 10, 10)">
+    <meta name="theme-color" content="rgb(237, 10, 10)">
+    <meta name="apple-mobile-web-app-status-bar-style" content="rgb(237, 10, 10)">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/logo_cabeza.svg">
+    <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="./assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="./assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="./assets/css/vendor/sal.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <meta property="og:title" content="Kumanima | Inicio">
+    <meta property="og:description" content="Disfruta de una amplia selección de mangas y animes en nuestra página web">
+    <meta property="og:url" content="https://kumanima.com/">
+    <meta property="og:image" content="./assets/images/logo_cabeza.svg">
 </head>
-
 <body>
-    <div class="flares">
-        <img src="images/flare-top.png" loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px"
-            srcset="flare-top-500.png 500w, images/flare-top-800.png 800w, images/flare-top-1080.png 1080w, images/flare-top.png 1920w"
-            alt="" class="flares-top">
-        <img src="images/flare-right.png" loading="lazy" sizes="(max-width: 1622px) 100vw, 1622px"
-            srcset="images/flare-right-500.png 500w, images/flare-right-800.png 800w, images/flare-right-1080.png 1080w, images/flare-right.png 1622w"
-            alt="" class="new-flare-nav top-right hide-mobile">
-        <img src="images/flare-left.png" loading="lazy" sizes="(max-width: 1518px) 100vw, 1518px"
-            srcset="images/flare-left-500.png 500w, images/flare-left-800.png 800w, images/flare-left.png 1518w" alt=""
-            class="new-flare-nav top-left hide-mobile">
-    </div>
-
-    <div class="container">
-        <div class="hero">
-
-            <h1>Hello from FL0.</h1>
-            <p>Congratulations, you've deployed a Node.js web server with FL0!</p>
-        </div>
-        <div class="logo">
-            <img src="images/logo.svg" loading="lazy" alt="">
-
+    <div id="preloader" style="display:none">
+        <div class="resize2">
+            <img id="logo-gif" class="resize mb-5" src="./assets/images/preloader.gif" alt="preloader">
         </div>
     </div>
-    <script type="text/javascript">
-        document.addEventListener('click', function (event) {
-            const x = event.clientX / window.innerWidth;
-            const y = event.clientY / window.innerHeight;
-            confetti({
-                origin: { x, y }
-            });
-        });
-        confetti();
-    </script>
+    <header class="header header-frame">
+        <div class="container">
+            <!-- Start Mainmanu Nav -->
+            <nav class="navbar navbar-expand-lg" style="justify-content: center !important;">
+                <a class="navbar-brand" href="index.html"><img src="./assets/images/logo_letras_cabeza.svg" alt=""></a>
+                </button>
+            </nav>
+        </div>
+
+    </header>
+    <main>
+        <section class="login text-center">
+            <div class="container">
+                <div class="login-block">
+                    <div class="login-content">
+                        <h3>Inicio de Sesion</h3>
+                        <div class="login-sec">
+
+                            <form id="InicioDeSesion">
+                                <div class="form-group">
+                                    <input id="email" class="form-control" type="email" name="email" required="" placeholder="Correo electronico">
+                                </div>
+                                <div class="form-group">
+                                    <input id="password" class="form-control" type="password" name="password" required="" placeholder="Contraseña">
+                                </div>
+                                <div style="display: flex; justify-content: center;">
+                                    <button id="entrar" style="width: 45%;margin-right: 5%;" type="submit" class="anime-btn btn-dark border-change">
+                                        Entrar
+                                    </button>
+                                    <button id="registrar" style="margin-left: 5%;width: 45%;" type="submit" class="anime-btn btn-dark border-change">
+                                        Registrar
+                                    </button>
+                                </div>
+
+ 
+                            </form>
+                            <p><a href="reset-password.html">Recuperar contraseña</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-main style-1">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5 col-sm-12 col-12">
+                        <div class="footer-widget">
+                            <a href="home.html"><img alt="" src="./assets/images/logo_letras_cabeza.svg"></a>
+                            <p class="mt-2 mb-4">Kumanima es una página web dedicada a los amantes del anime y el manga, al acceder a la página, encontrarán una amplia selección de series de anime y manga para leer y ver en línea de forma gratuita. Kumanima es una página web completa y fácil de usar que ofrece una amplia selección de series de anime y manga para leer y ver en línea de forma gratuita.</p>
+                            <h6 class="mb-2">ÚNETE A NOSOTROS</h6>
+                            <ul class="social-icons">
+                                <li><a href=""><img alt="" src="./assets/images/footer/reddit.png"></a></li>
+                                <li><a href=""><img alt="" src="./assets/images/footer/discord.png"></a></li>
+                                <li><a href=""><img alt="" src="./assets/images/footer/instagram.png"></a></li>
+                                <li><a href=""><img alt="" src="./assets/images/footer/twitter.png"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-12 col-12">
+                        <div class="footer-widget align-middle">
+                            <h6 class="m-0">Recibe notificaciones</h6>
+                            <p class="light-text">Recibe correos electrónicos con las últimas noticias sobre anime y más</p>
+                            <form action="home.html">
+                                <div class="input-group form-group footer-email-box">
+                                    <input class="form-control" type="email" name="email"
+                                        placeholder="info@example.com">
+                                    <button class="input-group-text anime-btn" type="submit">Subscribete</button>
+                                </div>
+                            </form>
+                            <p class="text">Al suscribirte aceptas nuestros términos y condiciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom bg-color-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="footer-copyright">
+                            <span class="copyright-text">© 2023. All rights reserved by <a
+                                    href="#">Kumanima</a>.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer-bottom-link text-end">
+                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="comments.html" class="ps-2">Comments Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Jquery Js -->
+    <script src="./assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="./assets/js/vendor/slick.min.js"></script>
+    <script src="./assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="./assets/js/vendor/jquery-appear.js"></script>
+    <script src="./assets/js/vendor/sal.js"></script>
+    <script src="./assets/js/app2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 </body>
+</body>
+</html>

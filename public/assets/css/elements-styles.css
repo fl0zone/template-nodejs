@@ -1,0 +1,515 @@
+﻿/*=======================================================================
+2. Elements Styles
+=========================================================================*/
+
+/*-------------------------
+    Preloader
+--------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-black-light);
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+    padding-top: 20%;
+  }
+  @media only screen and (max-width: 992px) {
+    #preloader img{
+      max-width: 60%;
+      vertical-align: middle;
+    } 
+  }
+  /*-------------------------
+      Back To Top  
+  --------------------------*/
+  
+  .back-to-top {
+    position: fixed;
+    bottom: -40px;
+    right: 40px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: var(--color-primary);
+    color: var(--color-black);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+    -ms-transform: scale(0.3);
+    transform: scale(0.3);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  @media only screen and (max-width: 575px) {
+    .back-to-top {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+  
+  .back-to-top:focus {
+    color: var(--color-black);
+  }
+  
+  .back-to-top.show {
+    bottom: 40px;
+    right: 40px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  @media only screen and (max-width: 575px) {
+    .back-to-top.show {
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+  
+  .back-to-top.show:hover {
+    color: var(--color-black);
+    bottom: 30px;
+    opacity: 1;
+  }
+  
+  @media only screen and (max-width: 575px) {
+    .back-to-top.show:hover {
+      bottom: 10px;
+    }
+  }
+  
+  /*-------------------------
+      Promotion Popup
+  -------------------------*/
+  .promotion {
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .promotion img {
+    border-radius: 15px;
+  }
+  
+  .promotion .mfp-close {
+    color: var(--color-white);
+  }
+  
+  @media only screen and (max-width: 990px) {
+    .promotion {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .promotion {
+      width: 100%;
+    }
+  }
+  
+  /*-------------------------
+      Button
+  -------------------------*/
+  .anime-btn {
+    border-radius: 10px;  
+    font-weight: 500;
+    height: auto;
+    text-align: center;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    border-right: none;
+    background: var(--color-black-light);
+  }
+  
+  .anime-btn.btn-dark.border-change {
+    border: 2px solid var(--color-primary);
+  }
+  
+  .anime-btn.btn-dark {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 2px solid var(--color-purple);
+    border-radius: 8px;
+    color: var(--color-white);
+  }
+  
+  .anime-btn.btn-dark:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+  
+  }
+  .anime-btn.btn-dark.purple:hover {
+    background: var(--color-purple);
+    color: var(--color-white);
+  
+  }
+  .anime-btn.btn-dark.border-change:hover{
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  
+  @media only screen and (max-width: 991px) {
+    .anime-btn.btn-large {
+      padding: 18px 35px;
+    }
+  }
+  
+  
+  
+  
+  /* -----------------------
+    Heading Styles 
+  --------------------------*/
+  .heading.style-1 {
+    margin-bottom: 40px;
+  }
+  
+  .heading.style-1 h2 {
+    width: 100%;
+    font-family: var(--font-Noir-Pro-Bold);
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--color-white);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  
+  .heading.style-1 h2 span {
+    color: var(--color-grey-light);
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  
+  .heading.style-1 span {
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--color-grey-light);
+  }
+  
+  .heading.style-1 h2 span .active i {
+    color: var(--color-primary);
+  }
+  
+  .heading.style-1 p {
+    font-size: 16px;
+    color: var(--color-grey-normal);
+  }
+  
+  .heading.style-2 {
+    margin-bottom: 50px;
+  }
+  
+  .heading.style-2 h2 {
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+  }
+  
+  .heading.style-2 p {
+    font-size: 16px;
+    text-align: right;
+    color: var(--color-grey-normal);
+  }
+  
+  .heading.style-2 p i {
+    color: var(--color-dark);
+    font-size: 20px;
+  }
+  @media only screen and (max-width: 1199px) {
+    .heading.style-1 {
+      margin-bottom: 30px;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+  
+    .heading.style-1 h2{
+      justify-content: center;
+      flex-direction: column;
+      font-size: 30px;
+      
+    }
+    .heading.style-1 h2 span{
+      font-size: 14px;
+      padding-top: 10px;
+    }
+  }
+  @media only screen and (max-width: 492px) {
+    .heading.style-1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .heading.style-1 span {
+      font-size: 12px;
+    }
+    .heading.style-1 h2 {
+      font-size: 30px;
+    }
+  
+    .heading.style-1 h2 span {
+      padding-top: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .heading.style-1 p {
+      font-size: 14px;
+      text-align: center;
+    }
+  
+    .heading.style-2 h2 {
+      text-align: center;
+    }
+  
+    .heading.style-2 p a {
+      display: none;
+    }
+  }
+  
+  /* -----------------------
+    Card 
+  --------------------------*/
+  .card {
+    background-color: #f1f1f1;
+    border-radius: 0;
+    border: none;
+  }
+  
+  .card-body {
+    padding: 30px 0px;
+  }
+  
+  
+  /* -----------------------
+  Pagination 
+  --------------------------*/
+  .pagination-wrape {
+    padding: 30px 0 0 0;
+    text-align: center;
+  }
+  
+  ul.pagination {
+    display: block;
+  }
+  
+  ul.pagination li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+  
+  ul.pagination li a {
+    line-height: 42px;
+    width: 42px;
+    text-align: center;
+    color: var(--color-grey-light);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    display: block;
+    padding: 0 10px;
+    font-size: 32px;
+    transition: all 0.5s;
+    border: var(--border-light);
+    border-radius: 4px;
+    background: var(--color-dark-grey);
+  }
+  
+  ul.pagination li a:focus {
+    outline: 0;
+    box-shadow: none;
+    color: var(--color-grey-light);
+    background: var(--color-dark-grey);
+  }
+  
+  ul.pagination li a.arrow {
+    background: transparent;
+    font-size: 24px;
+    font-family: 600;
+  }
+  
+  ul.pagination li a:hover {
+    background: var(--color-black);
+    color: var(--color-primary);
+  }
+  
+  ul.pagination li a.current {
+    background: var(--color-black);
+    color: var(--color-primary);
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .pagination-wrape {
+      margin-top: 20px;
+      padding: 0;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    ul.pagination li a {
+      line-height: 25px;
+      width: 32px;
+      padding: 0 4px;
+      font-size: 16px;
+    }
+  
+    ul.pagination li a.arrow {
+      font-size: 16px;
+    }
+  }
+  
+  @media only screen and (max-width: 490px) {
+  
+  
+    ul.pagination li {
+      margin: 0 8px;
+    }
+  
+    .pagination-wrape {
+      margin-top: 0px;
+    }
+  }
+  
+  /*-------------------------
+      Breadcrumb
+  -------------------------*/
+  
+  .breadcrumb {
+    margin: 0;
+  }
+  
+  .breadcrumb-content {
+    display: block;
+  }
+  
+  .breadcrumb .breadcrumb-content ul {
+    margin: 30px 0 0;
+    padding: 0;
+  }
+  
+  .breadcrumb .breadcrumb-content li {
+    display: inline-block;
+    position: relative;
+    font-weight: 400;
+    font-size: 20px;
+    margin-right: 30px;
+  }
+  
+  .breadcrumb .breadcrumb-content li:after {
+    content: "/";
+    color: var(--color-dark-grey);
+    font-size: 20px;
+    position: absolute;
+    top: 1px;
+    right: -20px;
+  }
+  
+  .breadcrumb .breadcrumb-content li a {
+    color: var(--color-grey-light);
+    font-size: 20px;
+  }
+  
+  .breadcrumb .breadcrumb-content li a:hover {
+    color: var(--color-primary);
+  }
+  
+  .breadcrumb .breadcrumb-content li a.active {
+    color: var(--color-primary);
+  }
+  
+  .breadcrumb .breadcrumb-content li:last-child:after {
+    display: none;
+  }
+  
+  @media only screen and (max-width: 991px) {
+  
+  
+    .breadcrumb .breadcrumb-content li {
+      font-size: 16px;
+      margin-right: 25px;
+    }
+  
+    .breadcrumb .breadcrumb-content li a {
+      color: var(--color-dark-grey);
+      font-size: 16px;
+    }
+  
+    .breadcrumb .breadcrumb-content li:after {
+      font-size: 13px;
+      right: -20px;
+    }
+  }
+  
+  /* -----------------------
+   Timer Countdown 
+  --------------------------*/
+  .timer {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* margin-bottom: 30px; */
+  }
+  
+  .timer li {
+    background-color: var(--color-white);
+    color: var(--color-black-light);
+    font-family: var(--font-Noir-Pro-Bold);
+    display: inline-block;
+    box-shadow: 0px 0px 15px #B35D22;
+    border-radius: 13px;
+    padding: 5px 10px;
+    font-weight: 275;
+    font-size: 35px;
+    margin: 0 10px;
+  }
+  
+  .timer li small {
+    font-size: 20px;
+    font-family: var(--font-Noir-Pro-Light);
+    color: var(--color-dark-grey);
+    padding-left: 5px;
+  }
+  
+  .timer li:first-child {
+    margin-left: 0;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .timer li {
+      padding: 5px;
+      font-size: 25px;
+      margin: 0 5px;
+    }
+  }
+  
+  @media only screen and (max-width: 492px) {
+    .timer li {
+      font-size: 16px;
+      border-radius: 4px;
+    }
+  
+    .timer li small {
+      font-size: 12px;
+    }
+  
+  }
