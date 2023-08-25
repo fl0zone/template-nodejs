@@ -1,7 +1,7 @@
-# Usar una imagen base de Node.js
+# Utilizar una imagen base de Node
 FROM node:16
 
-# Establecer el directorio de trabajo en el contenedor
+# Establecer un directorio de trabajo
 WORKDIR /usr/src/app
 
 # Copiar el archivo package.json y package-lock.json al contenedor
@@ -10,11 +10,11 @@ COPY package*.json ./
 # Instalar las dependencias del proyecto
 RUN npm install
 
-# Copiar el resto de archivos del proyecto al contenedor
+# Copiar el resto de archivos de tu proyecto al contenedor
 COPY . .
 
-# Puppeteer tiene algunas dependencias que no están incluidas en la imagen base de Node.js.
-# Así que las instalaremos:
+# Puppeteer requiere algunas dependencias adicionales que no están en la imagen base de Node
+# Estas dependencias son necesarias para ejecutar navegadores headless.
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     fonts-liberation \
@@ -22,40 +22,27 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
-    libc6 \
-    libcairo2 \
     libcups2 \
     libdbus-1-3 \
-    libexpat1 \
-    libfontconfig1 \
     libgbm1 \
-    libgcc1 \
-    libglib2.0-0 \
     libgtk-3-0 \
     libnspr4 \
     libnss3 \
-    libpango-1.0-0 \
-    libpangocairo-1.0-0 \
-    libstdc++6 \
-    libx11-6 \
     libx11-xcb1 \
-    libxcb1 \
     libxcomposite1 \
     libxcursor1 \
     libxdamage1 \
-    libxext6 \
     libxfixes3 \
     libxi6 \
     libxrandr2 \
-    libxrender1 \
     libxss1 \
     libxtst6 \
     lsb-release \
-    wget \
     xdg-utils
 
-# Exponer el puerto 3000
-EXPOSE 3000
+# Establecer el puerto en una variable de entorno
+ENV PORT 8080
+EXPOSE $PORT
 
-# Comando para ejecutar la aplicación
+# Comando para ejecutar tu aplicación
 CMD [ "npm", "start" ]
