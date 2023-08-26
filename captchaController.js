@@ -46,7 +46,7 @@ export default class CaptchaController {
 
       const captchaImageBase64 = base64Match[1];
       const captchaSolution = await CaptchaSolverModel.solveCaptcha(
-        base64Image
+        captchaImageBase64
       );
 
       const textInputElements = await page.$x(XPATH_TEXT_INPUT);
