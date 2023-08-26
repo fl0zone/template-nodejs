@@ -17,6 +17,14 @@ export default class CaptchaController {
         .json({ error: "The X-Target-URL header is required." });
     }
 
+    const captchaApikey = decodeURIComponent(req.headers["x-captcha-api-key"]);
+
+    if (!captchaApikey) {
+      return res
+        .status(400)
+        .json({ error: "The x-captcha-api-key header is required." });
+    }
+
     let browser;
 
     try {
@@ -46,7 +54,8 @@ export default class CaptchaController {
 
       const captchaImageBase64 = base64Match[1];
       const captchaSolution = await CaptchaSolverModel.solveCaptcha(
-        captchaImageBase64
+        captchaImageBase64,
+        captchaApikey
       );
 
       const textInputElements = await page.$x(XPATH_TEXT_INPUT);

@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const TWOCAPTCHA_API_KEY = process.env.TWOCAPTCHA_API_KEY;
-
 export default class CaptchaSolverModel {
-  static async solveCaptcha(base64Image) {
+  static async solveCaptcha(base64Image, apiKey) {
     const API_ENDPOINT = "http://2captcha.com/in.php";
     const SOLUTION_ENDPOINT = "http://2captcha.com/res.php";
 
     const response = await axios.post(API_ENDPOINT, {
-      key: TWOCAPTCHA_API_KEY,
+      key: apiKey,
       method: "base64",
       body: base64Image,
       json: 1,
@@ -25,7 +23,7 @@ export default class CaptchaSolverModel {
 
       const solutionResponse = await axios.get(SOLUTION_ENDPOINT, {
         params: {
-          key: TWOCAPTCHA_API_KEY,
+          key: apiKey,
           action: "get",
           id: requestId,
           json: 1,
