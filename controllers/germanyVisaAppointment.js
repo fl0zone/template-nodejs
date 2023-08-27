@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import CaptchaSolverModel from "./captchaSolverModel.js";
+import captchaSolver from "../models/captchaSolver.js";
 
 const XPATH_CAPTCHA_STYLE =
   "//form[@id='appointment_captcha_month']/div[1]/captcha[1]/div[1]";
@@ -7,8 +7,8 @@ const XPATH_TEXT_INPUT = "//input[@id='appointment_captcha_month_captchaText']";
 const XPATH_SUBMIT_BUTTON =
   "//input[@id='appointment_captcha_month_appointment_showMonth']";
 
-export default class CaptchaController {
-  static async handleCaptchaRequest(req, res) {
+export default class germanyVisaAppointmentController {
+  static async appointmentAvailability(req, res) {
     const targetURL = decodeURIComponent(req.headers["x-target-url"]);
 
     if (!targetURL) {
@@ -18,23 +18,43 @@ export default class CaptchaController {
     }
 
     const captchaApikey = decodeURIComponent(req.headers["x-captcha-api-key"]);
-
     if (!captchaApikey) {
       return res
         .status(400)
         .json({ error: "The x-captcha-api-key header is required." });
     }
 
+    const puppeteerOptions = {
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    };
+
+    const proxy = req.headers["x-proxy-server"];
+    if (proxy) {
+      puppeteerOptions.args.push(`--proxy-server=${proxy}`);
+    }
+
     let browser;
+    let proxyErrorOccurred = false;
 
     try {
-      browser = await puppeteer.launch({
-        headless: "new",
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      });
+      browser = await puppeteer.launch(puppeteerOptions);
 
       const page = await browser.newPage();
+
+      if (proxy) {
+        page.on("requestfailed", (request) => {
+          proxyErrorOccurred = true;
+        });
+      }
+
       await page.goto(targetURL);
+
+      if (proxyErrorOccurred) {
+        throw new Error(
+          "Proxy used, but a request failed. Proxy might not be working."
+        );
+      }
 
       const captchaElements = await page.$x(XPATH_CAPTCHA_STYLE);
       if (!captchaElements || captchaElements.length === 0) {
@@ -53,7 +73,7 @@ export default class CaptchaController {
       }
 
       const captchaImageBase64 = base64Match[1];
-      const captchaSolution = await CaptchaSolverModel.solveCaptcha(
+      const captchaSolution = await captchaSolver.solveCaptchaBase64(
         captchaImageBase64,
         captchaApikey
       );

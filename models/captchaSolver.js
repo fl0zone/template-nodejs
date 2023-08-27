@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class CaptchaSolverModel {
-  static async solveCaptcha(base64Image, apiKey) {
+  static async solveCaptchaBase64(base64Image, apiKey) {
     const API_ENDPOINT = "http://2captcha.com/in.php";
     const SOLUTION_ENDPOINT = "http://2captcha.com/res.php";
 

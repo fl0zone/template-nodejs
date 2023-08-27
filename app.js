@@ -1,10 +1,10 @@
 import express from "express";
-import CaptchaController from "./captchaController.js";
+import germanyVisaAppointmentController from "./controllers/germanyVisaAppointment.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
-app.get("/scrape", CaptchaController.handleCaptchaRequest);
+app.get("/scrape", germanyVisaAppointmentController.appointmentAvailability);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
