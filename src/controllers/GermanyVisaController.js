@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
-import CaptchaSolver from "../models/CaptchaSolver.js";
-import { Notifier } from "../models/Notifier.js";
+import CaptchaSolver from "../services/CaptchaSolver.js";
+import { Notifier } from "../services/Notifier.js";
 
 const XPATH_CAPTCHA_STYLE =
   "//form[@id='appointment_captcha_month']/div[1]/captcha[1]/div[1]";
