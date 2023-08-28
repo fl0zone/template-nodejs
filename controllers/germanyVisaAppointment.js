@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
-import captchaSolver from "../models/captchaSolver.js";
+import CaptchaSolver from "../models/CaptchaSolver.js";
+import { Notifier } from "../models/Notifier.js";
 
 const XPATH_CAPTCHA_STYLE =
   "//form[@id='appointment_captcha_month']/div[1]/captcha[1]/div[1]";
@@ -7,7 +8,7 @@ const XPATH_TEXT_INPUT = "//input[@id='appointment_captcha_month_captchaText']";
 const XPATH_SUBMIT_BUTTON =
   "//input[@id='appointment_captcha_month_appointment_showMonth']";
 
-export default class germanyVisaAppointmentController {
+export default class GermanyVisaAppointmentController {
   static async appointmentAvailability(req, res) {
     const targetURL = decodeURIComponent(req.headers["x-target-url"]);
 
@@ -73,7 +74,7 @@ export default class germanyVisaAppointmentController {
       }
 
       const captchaImageBase64 = base64Match[1];
-      const captchaSolution = await captchaSolver.solveCaptchaBase64(
+      const captchaSolution = await CaptchaSolver.solveCaptchaBase64(
         captchaImageBase64,
         captchaApikey
       );
@@ -97,8 +98,27 @@ export default class germanyVisaAppointmentController {
 
       const h4Elements = await page.$$("h4");
       if (h4Elements.length > 0) {
-        const h4Content = await page.$eval("h4", (el) => el.innerText);
-        res.json({ title: h4Content });
+        const nextAppointmentDate = await page.$eval(
+          "h4",
+          (el) => el.innerText
+        );
+
+        const channel = "#germany-appointment-availability";
+        const text = `¡Hay una cita disponible \nFecha: ${nextAppointmentDate}\nURL: ${targetURL}`;
+        const webhookUrl =
+          "https://hooks.slack.com/services/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";
+        const username = "Germany Appointment Alert!";
+        const iconEmoji = ":de:";
+
+        await Notifier.sendToSlack(
+          channel,
+          text,
+          webhookUrl,
+          username,
+          iconEmoji
+        );
+
+        res.json({ title: nextAppointmentDate });
       } else {
         res.json({ message: "No hay citas disponibles" });
       }
