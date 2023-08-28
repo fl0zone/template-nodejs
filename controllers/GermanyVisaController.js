@@ -8,8 +8,8 @@ const XPATH_TEXT_INPUT = "//input[@id='appointment_captcha_month_captchaText']";
 const XPATH_SUBMIT_BUTTON =
   "//input[@id='appointment_captcha_month_appointment_showMonth']";
 
-export default class GermanyVisaAppointmentController {
-  static async appointmentAvailability(req, res) {
+export default class GermanyVisaController {
+  static async embassyAppointmentAvailability(req, res) {
     const targetURL = decodeURIComponent(req.headers["x-target-url"]);
 
     if (!targetURL) {
@@ -102,11 +102,9 @@ export default class GermanyVisaAppointmentController {
           "h4",
           (el) => el.innerText
         );
-
         const channel = "#germany-appointment-availability";
         const text = `¡Hay una cita disponible \nFecha: ${nextAppointmentDate}\nURL: ${targetURL}`;
-        const webhookUrl =
-          "https://hooks.slack.com/services/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";
+        const webhookUrl = process.env.SLACK_WEBHOOK_URL;
         const username = "Germany Appointment Alert!";
         const iconEmoji = ":de:";
 
@@ -118,7 +116,7 @@ export default class GermanyVisaAppointmentController {
           iconEmoji
         );
 
-        res.json({ title: nextAppointmentDate });
+        res.json({ nextApponintmentDate: nextAppointmentDate });
       } else {
         res.json({ message: "No hay citas disponibles" });
       }
