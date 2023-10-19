@@ -16,7 +16,9 @@ app.get('/articulos', async (req, res) => {
         password: 'qq11',
         port: 1433,
         options: {
-          enableArithAbort: true,
+          trustedConnection: true,
+          encrypt: false,
+          trustServerCertificate: true,
         },
       });
 
