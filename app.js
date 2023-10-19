@@ -35,6 +35,8 @@ app.get('/articulos', async (req, res) => {
 
 app.get('/articulos/cuenta/:id', async (req, res) => {
   try {
+    const id = req.params.id;
+    if(!id) res.status(400).send('Invalid id argument');
     // Create a connection pool
     const pool = await sql.connect({
       server: '179.43.116.142',
