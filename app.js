@@ -3,13 +3,13 @@ const sql = require('mssql');
 const app = express();
 const port = process.env.PORT ?? 3000;
 
-app.use(express.static('public'))
+app.use()
 
 // app.get('*', (req, res) => {
 //     res.redirect('/');
 // })
 
-app.get('/api/endpoint', async (req, res) => {
+app.get('/articulos', async (req, res) => {
     try {
       // Create a connection pool
       const pool = await sql.connect({
@@ -24,7 +24,7 @@ app.get('/api/endpoint', async (req, res) => {
       });
 
       // Execute a query
-      const result = await pool.request().query('SELECT * FROM YourTable');
+      const result = await pool.request().query('SELECT * FROM M6_Picking');
 
       // Send the result as a response
       res.json(result.recordset);
