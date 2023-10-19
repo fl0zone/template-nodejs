@@ -1,13 +1,10 @@
 const express = require('express');
 const sql = require('mssql');
+const cors = require('cors')
 const app = express();
 const port = process.env.PORT ?? 3000;
 
-app.use()
-
-// app.get('*', (req, res) => {
-//     res.redirect('/');
-// })
+app.use(cors())
 
 app.get('/articulos', async (req, res) => {
     try {
