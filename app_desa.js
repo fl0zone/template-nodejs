@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors')
 const mysql = require('mysql');
 const mssql = require('mssql');
 
-const port = 3000;
+const port = process.env.PORT ?? 3000;
+
 
 // Config BD MySQL
 const dbConfig = {
@@ -27,10 +29,98 @@ connection.connect((err) => {
 
     const app = express();
 
-    app.get('/getComisionista/:id/:idC', async (req, res) => {
-        const { id, idC } = req.params;
+    app.use(express.json());
+    app.use(cors())
 
-        // Corregido: la consulta SQL debe incluir el valor de 'id'
+    app.post('/users_login', (req, res) => {
+        const { user_email, password } = req.body;
+
+        connection.query(
+            'SELECT * FROM mob_user WHERE PASSWORD = md5(?) AND EMAIL = ? AND ENABLED = 1',
+            [password, user_email],
+            (err, results) => {
+                if (err) {
+                    console.error('Error en la consulta: ' + err.message);
+                    res.status(500).send('Error interno del servidor');
+                    return;
+                }
+
+                if (results.length > 0) {
+                    const usuario = results.map((row) => ({
+                        USER_ID: row.USER_ID,
+                        EMAIL: row.EMAIL,
+                        NOMBRE: row.NOMBRE,
+                        APELLIDO: row.APELLIDO,
+                    }));
+                    res.json({ usuario });
+                } else {
+                    res.json({ usuario: 0 });
+                }
+            }
+        );
+    });
+    
+    app.get('/articulos', async (req, res) => {
+        try {
+          // Create a connection pool
+          const pool = await mssql.connect({
+            server: '179.43.116.142',
+            database: 'PuestoLob_Pick',
+            user: 'qq',
+            password: 'qq11',
+            port: 1433,
+            options: {
+              trustedConnection: true,
+              encrypt: false,
+              trustServerCertificate: true,
+            },
+          });
+    
+          // Execute a query
+          const result = await pool.request().query('SELECT * FROM M6_Picking');
+    
+          // Send the result as a response
+          res.json(result.recordset);
+        } catch (error) {
+          console.error(error);
+          res.status(500).send('Internal Server Error');
+        }
+    });
+    
+    app.get('/articulos/cuenta/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        if(!id) res.status(400).send('Invalid id argument');
+        // Create a connection pool
+        const pool = await mssql.connect({
+          server: '179.43.116.142',
+          database: 'PuestoLob_Pick',
+          user: 'qq',
+          password: 'qq11',
+          port: 1433,
+          options: {
+            trustedConnection: true,
+            encrypt: false,
+            trustServerCertificate: true,
+          },
+        });
+    
+        // Execute a query
+        const result = await pool.request().query(`SELECT * FROM M6_Picking where IDCtaCte = ${id}`);
+    
+        // Send the result as a response
+        res.json(result.recordset);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+      }
+    });
+    
+
+    app.get('/getComisionista/:id/:idC', async (req, res) => {
+        
+        const { id, idC } = req.params;
+        
         const qry = `SELECT cdb.*, mucdb.farmer_id
         from mob_user_by_client_database_connection as mucdb
         inner join client_database_connection as cdb on cdb.CLIENT_DATABASE_CONNECTION_ID = mucdb.CLIENT_DATABASE_CONNECTION_ID
@@ -83,6 +173,7 @@ connection.connect((err) => {
         });
     });
 
+    
 
     app.listen(port, () => {
         console.log(`Servidor Express en ejecución en el puerto ${port}`);
