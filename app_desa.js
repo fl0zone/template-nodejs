@@ -173,7 +173,32 @@ connection.connect((err) => {
         });
     });
 
+    app.get('/listado_acopios', (req, res) => {
+        const query = `
+            SELECT storage.name, storage.subdomain_name, storage.logo_path, storage.storage_id, client_database_connection.CLIENT_DATABASE_CONNECTION_ID
+            FROM STORAGE
+            JOIN client_database_connection
+            WHERE storage.storage_id = client_database_connection.STORAGE_ID
+            AND client_database_connection.MOBILE_ENABLED = 1
+            ORDER BY storage.name ASC
+        `;
     
+        connection.query(query, (err, results) => {
+            if (err) {
+                console.error('Error en la consulta: ' + err.message);
+                res.status(500).send('Error interno del servidor');
+                return;
+            }
+    
+            if (results.length > 0) {
+                const resultados = results;
+                res.json({ resultados });
+            } else {
+                res.json({ resultados: 0 });
+            }
+        });
+    });
+   
 
     app.listen(port, () => {
         console.log(`Servidor Express en ejecución en el puerto ${port}`);
