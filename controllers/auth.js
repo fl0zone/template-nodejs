@@ -72,6 +72,8 @@ const logIn = async ( req = request, res = response ) => {
             uid: result.rows[0]?.user_id,
             name: result.rows[0]?.name,
             lastname: result.rows[0]?.lastname,
+            email: result.rows[0]?.email,
+            avatar: result.rows[0]?.avatar,
             token
         })
         

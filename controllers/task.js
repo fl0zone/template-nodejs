@@ -14,17 +14,17 @@ const createTask = async ( req = request, res = response ) => {
 
         const task_id = uuidv4();
         const { x_token } = req.headers;
-        const { title, description, create_date, finish_date } = req.body;
+        const { title, description, start_date, finish_date } = req.body;
         const { tempFilePath } = req.files.img;
-        const cd = new Date(create_date);
+        const sd = new Date(start_date);
         const fd = new Date(finish_date);
 
         const { user_id } = await verifyJWT( x_token );
 
         if (user_id) {
-          const query = `INSERT INTO tasks (task_id,title,description,img,create_date,finish_date,state,user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
+          const query = `INSERT INTO tasks (task_id,title,description,img,start_date,finish_date,state,user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
           const { secure_url } = await cloudinary.uploader.upload(tempFilePath, {folder: 'project-task-manager'});
-          await pool.query(query, [task_id,title,description,secure_url,cd,fd,'pendiente',user_id]);
+          await pool.query(query, [task_id,title,description,secure_url,sd,fd,'pendiente',user_id]);
   
           res.status(200).json({ ok: true });
         }
@@ -79,14 +79,13 @@ const updateTask = async ( req = request, res = response ) => {
   const cd = new Date(create_date);
   const fd = new Date(finish_date);
   const nameImg = secure_url.split('/').at(-1);
-  console.log(nameImg);
   const { tempFilePath } = req.files.img;
 
   try {
     const user = await verifyJWT( x_token );
 
     if(user && task_id){
-      const query = 'UPDATE tasks SET title=$1,description=$2,create_date=$3,finish_date=$4,img=$5 WHERE task_id=$6';
+      const query = 'UPDATE tasks SET title=$1,description=$2,start_date=$3,finish_date=$4,img=$5 WHERE task_id=$6';
       await pool.query(query,[title,description,cd,fd,secure_url,task_id]);
       await cloudinary.uploader.destroy(`project-task-manager/${nameImg.split('.')[0]}`);
       await cloudinary.uploader.upload(tempFilePath, {folder: 'project-task-manager'})
