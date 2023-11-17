@@ -6,7 +6,8 @@ const { verifyJWT } = require('../helpers/generate-jwt');
 
 const cloudinary = require('cloudinary').v2;
        
-cloudinary.config({ cloud_name: process.env.CLOUD_NAME, api_key: process.env.API_KEY, api_secret: process.env.API_SECRET, secure: true });
+/* cloudinary.config({ cloud_name: process.env.CLOUD_NAME, api_key: process.env.API_KEY, api_secret: process.env.API_SECRET, secure: true }); */
+cloudinary.config(process.env.CLOUDINARY_URL);
 
 const createTask = async ( req = request, res = response ) => {
     
