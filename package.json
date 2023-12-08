@@ -4,7 +4,8 @@
   "description": "A simple Node.js Express app for getting started on FL0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "start:dev": "node -r dotenv/config  dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Sajeagency/template-nodejs/issues"
   },
-  "homepage": "https://github.com/Sajeagency/template-nodejs#readme"
+  "homepage": "https://github.com/Sajeagency/template-nodejs#readme",
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
