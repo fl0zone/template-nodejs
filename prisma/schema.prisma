@@ -22,6 +22,7 @@ model User {
   UserRole             String    @unique   
   galleries            Gallery[] 
   donations            Donations[] 
+  comment              Comments[]
 }
 
 model Gallery {
@@ -46,3 +47,13 @@ model Donations {
   User              User      @relation(fields: [User_id], references: [id])
 }
 
+model Comments {
+  comments_id  Int       @id @default(autoincrement())
+  user         User?     @relation(fields: [user_id], references: [id])
+  user_id      Int?
+  content_id   Int
+  comment      String
+  timestamp    DateTime
+
+  @@index([user_id], name: "user_id")
+}
