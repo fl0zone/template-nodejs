@@ -1,27 +1,8 @@
-<p align="center">
-  <a href="https://fl0.com/" target="blank">
-    <img src="https://user-images.githubusercontent.com/88681427/217122968-e6132cad-1944-4ebe-9ec1-105af6a18c4f.png">
-  </a>
-</p>
+` Telegram to SQL database interface`
 
-<h2 align="center">Node.js Quickstart</h2>
-<p align="center">Backend engineering, supercharged.</p>
+This project makes use of the [Telegram Bot API](https://core.telegram.org/bots) as well as FL0's starting repository
 
-## Overview
-
-Use this repository to get up and running on FL0 with the following stack:
-
-<table>
-<tr>
-  <th>Language</th>
-  <td>Javascript</td>
-</tr>
-<tr>
-  <th>Router</th>
-  <td>Express</td>
-</tr>
-</table>
-
+# Fl0
 ## Getting Started
 
 Clone this repo and run the following commands from the project root:
