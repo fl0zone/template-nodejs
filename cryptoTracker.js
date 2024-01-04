@@ -13,6 +13,7 @@ const slackClient = new WebClient(slackToken);
 async function obtenerPreciosActuales() {
     try {
         const response = await axios.get(apiUrl);
+        console.log(response.data); // Imprime los datos en la consola
         return response.data;
     } catch (error) {
         console.error('Error al obtener precios:', error);
