@@ -4,7 +4,8 @@
   "description": "A simple Node.js Express app for getting started on FL0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "start:lite": "lite-server"
   },
   "author": "",
   "license": "ISC",
