@@ -15,15 +15,36 @@ model User {
   UserName             String
   Email                String    @unique
   contrasena           String
-  externalAuthProviderid String
-  ExternalAuthProviderType String
-  ProfilePictureURL    String
-  ExternalAccessToken  String
   UserRole             String    @unique   
   galleries            Gallery[] 
   donations            Donations[] 
   comment              Comments[]
+  facebookProfile FacebookUser?
+  googleProfile   GoogleUser?
 }
+
+model FacebookUser{
+id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  externalAuthProviderid String
+  ExternalAuthProviderType String
+  ProfilePictureURL      String
+  ExternalAccessToken    String?
+ user        User     @relation(fields: [userId], references: [id])
+}
+
+model GoogleUser{
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  externalAuthProviderid String
+  ExternalAuthProviderType String
+  ProfilePictureURL      String
+  ExternalAccessToken    String?
+ user        User     @relation(fields: [userId], references: [id])
+}
+
+
+
 
 model Gallery {
   id          Int       @id @default(autoincrement())
