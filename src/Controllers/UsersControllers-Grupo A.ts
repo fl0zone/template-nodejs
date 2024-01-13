@@ -4,7 +4,9 @@ import {Request,Response} from 'express';
 const prisma=new PrismaClient();
 
 export const createUser= async (req:Request,res:Response)=>{
+  
 try{
+  
 const{UserName,contrasena,Email}=req.body;
 const usuarioExistente=await prisma.user.findFirst({
 where:{Email},
