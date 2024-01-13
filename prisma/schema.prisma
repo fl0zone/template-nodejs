@@ -15,7 +15,7 @@ model User {
   UserName             String
   Email                String    @unique
   contrasena           String
-  UserRole             String    @unique   
+  UserRole             String        @unique   @default("NormalProfile")   
   galleries            Gallery[] 
   donations            Donations[] 
   comment              Comments[]
@@ -52,7 +52,8 @@ model Gallery {
   ImageUrl    String
   Description String
   User_role   String
-  User        User      @relation(fields: [User_role], references: [UserRole])
+  User_id     Int
+  User        User      @relation(fields: [User_id], references: [id])
 }
 
 model Donations {

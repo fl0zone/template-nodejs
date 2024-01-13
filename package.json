@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "start:dev": "node -r dotenv/config  dist/index.js"
+    "start:dev": "node -r dotenv/config  dist/index.js", 
+    "dev":"nodemon dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/Sajeagency/template-nodejs#readme",
   "devDependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.2"
   }
 }
