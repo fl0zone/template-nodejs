@@ -32,7 +32,24 @@ res.status(500).json({error:'Error al Crear Usurio'});
  }
 };
 
+export const eraseUser=async(req:Request,res:Response)=>{
+try{
+const userId=req.params.id;
 
+const user= await prisma.user.findUnique({
+where:{id:userId}
+
+})
+
+
+}
+
+
+
+
+
+
+}
 
 
 
